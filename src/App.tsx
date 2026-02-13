@@ -5,14 +5,27 @@ import { CallCard } from './features/CallCard';
 import { ActionPanel } from './features/ActionPanel';
 import { ResolutionModal } from './features/ResolutionModal';
 import { DailyReportPage } from './features/DailyReportModal';
+import { LoginPage } from './features/LoginPage';
 import { useGeolocation } from './hooks/useGeolocation';
+import { useAuth } from './context/AuthContext';
 import { api } from './utils/mockApi';
 import type { Call, CallReport } from './types';
-import { Loader2, FileText, ChevronLeft, Power, Clock, Building2, CheckCircle, MapPin } from 'lucide-react';
+import { Loader2, FileText, ChevronLeft, Power, Clock, Building2, CheckCircle, MapPin, LogOut } from 'lucide-react';
 import { useToast } from './components/ToastProvider';
 import { Button } from './components/Button';
 
 function App() {
+  const { isAuthenticated, user, logout } = useAuth();
+
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    return <LoginPage />;
+  }
+
+  return <AppContent user={user!} onLogout={logout} />;
+}
+
+function AppContent({ user, onLogout }: { user: { name: string; warehouseName: string }; onLogout: () => void }) {
   const [isWorking, setIsWorking] = useState(false);
   const { location, error: locationError } = useGeolocation(isWorking);
   const [calls, setCalls] = useState<Call[]>([]);
@@ -161,6 +174,21 @@ function App() {
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
             <div className="relative space-y-3">
+              {/* User info */}
+              <div className="flex items-center justify-between mb-1">
+                <div>
+                  <p className="text-sm font-semibold text-foreground/90">مرحباً, {user.name}</p>
+                  <p className="text-[10px] text-muted-foreground/40" dir="rtl">{user.warehouseName}</p>
+                </div>
+                <button
+                  onClick={onLogout}
+                  className="p-2 rounded-lg hover:bg-red-500/10 text-muted-foreground/30 hover:text-red-400 transition-colors"
+                  title="تسجيل الخروج"
+                >
+                  <LogOut className="h-4 w-4" />
+                </button>
+              </div>
+
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-red-400" />
                 <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wider">Shift Not Started</span>

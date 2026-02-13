@@ -4,13 +4,17 @@ import './index.css'
 import App from './App.tsx'
 import { ToastProvider } from './components/ToastProvider';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { AuthProvider } from './context/AuthContext';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <ToastProvider>
-        <App />
-      </ToastProvider>
+      <AuthProvider>
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </AuthProvider>
     </ErrorBoundary>
   </StrictMode>,
 )
+
