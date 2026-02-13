@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Staff & Wings based on user image -->
+  <path d="M256 120V400" stroke="white" stroke-width="24" stroke-linecap="round"/>
+  <path d="M120 180C120 180 180 120 256 120C332 120 392 180 392 180" stroke="white" stroke-width="24" stroke-linecap="round"/>
+  
+  <!-- Snakes wrapping -->
+  <path d="M256 400C200 400 180 340 180 300C180 260 220 220 256 220C292 220 332 260 332 300C332 340 312 400 256 400Z" stroke="white" stroke-width="24"/>
+  
+  <!-- Top Wings stylized -->
+  <path d="M100 150C100 150 160 100 240 110" stroke="white" stroke-width="16" stroke-linecap="round"/>
+  <path d="M412 150C412 150 352 100 272 110" stroke="white" stroke-width="16" stroke-linecap="round"/>
+</svg>
