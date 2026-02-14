@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, User, Eye, EyeOff, LogIn, Pill } from 'lucide-react';
+import { Lock, User, Eye, EyeOff, LogIn } from 'lucide-react';
 import { Button } from '../components/Button';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/logo.png';
 
 export function LoginPage() {
     const [username, setUsername] = useState('');
@@ -52,7 +53,7 @@ export function LoginPage() {
                         transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
                         className="mx-auto w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10 flex items-center justify-center"
                     >
-                        <Pill className="h-10 w-10 text-primary" />
+                        <img src={logo} alt="Dawak Logo" className="h-16 w-16 object-contain" />
                     </motion.div>
                     <div>
                         <h1 className="text-2xl font-bold text-foreground tracking-tight">Dawak</h1>
